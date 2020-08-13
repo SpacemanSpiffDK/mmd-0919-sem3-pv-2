@@ -19,7 +19,7 @@ videojs('video1', options);
 const elmVideo = document.querySelector('#video1 > video');
 
 elmVideo.addEventListener('play', (event) => {
-    console.log('Play!');
+    console.log('Play');
 });
 
 // This does the same thing as above, but isn't using the ES6 arrow-function, use whatever you're comfortable with
@@ -28,10 +28,17 @@ elmVideo.addEventListener('play', (event) => {
 // });
 
 elmVideo.addEventListener('pause', (event) => {
-    console.log('Pause!');
+    console.log('Pause');
 });
 
 // Check out https://developer.mozilla.org/en-US/docs/Web/API/HTMLMediaElement#Events 
 // to find a list of events that are triggered when using <video>
 
+// Try it yourself - use 15 minutes to test a couple of events
+// Example what's the difference between "seeked" and "seeking"
 
+
+// Set current time: .currentTime = 5;
+
+// time changed: .ontimeupdate = () => {}
+// read current time: .currentTime
