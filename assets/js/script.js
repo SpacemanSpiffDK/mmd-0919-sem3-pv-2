@@ -4,7 +4,7 @@
 // Setting options in a json object
 let options = {
     "controls": true, 
-    "autoplay": false, 
+    "autoplay": true, 
     "preload": "auto", 
     "muted": true
 };
@@ -18,17 +18,23 @@ videojs('video1', options);
 
 const elmVideo = document.querySelector('#video1 > video');
 
+const elmStatus = document.querySelector('#status');
 elmVideo.addEventListener('play', (event) => {
-    console.log('Play');
+    elmStatus.innerHTML = 'Play';
+    console.log(event); // see what's inside the event object
 });
 
-// This does the same thing as above, but isn't using the ES6 arrow-function, use whatever you're comfortable with
+// // This does the same thing as above, but isn't using the ES6 arrow-function, use whatever you're comfortable with
 // elmVideo.addEventListener('play', function(event) {
 //     console.log('Play!');
 // });
-
+    
 elmVideo.addEventListener('pause', (event) => {
-    console.log('Pause');
+    elmStatus.innerHTML = 'Pause';
+});
+
+elmVideo.addEventListener('seeking', (event) => {
+    elmStatus.innerHTML = 'Seeking';
 });
 
 // Check out https://developer.mozilla.org/en-US/docs/Web/API/HTMLMediaElement#Events 
@@ -39,6 +45,41 @@ elmVideo.addEventListener('pause', (event) => {
 
 
 // Set current time: .currentTime = 5;
-
-// time changed: .ontimeupdate = () => {}
 // read current time: .currentTime
+// when the time changed: .ontimeupdate = () => {}
+
+
+// view current time
+const elmCounter = document.querySelector('#counter');
+elmVideo.ontimeupdate = () => {
+    let time = elmVideo.currentTime;
+    // elmCounter.innerHTML = time;
+    // elmCounter.innerHTML = Math.floor(time);
+    elmCounter.innerHTML = displayTime(time);
+}
+
+const displayTime = (timeInSeconds) => {
+    // set the length of a minute in seconds
+    const minuteLength = 60;
+    // round seconds to integer
+    time = Math.floor(timeInSeconds);
+    // initialize variables for the display numbers
+    let seconds = 0;
+    let minutes = 0;
+    // seconds is the time in seconds 
+    // modulus the amount of seconds in a minute
+    seconds = time % minuteLength;
+    // if we're above the length of the first minute we need 
+    // to figure out how many minutes we have
+    if (time >= minuteLength) {
+        minutes = Math.floor(time/minuteLength);
+    }
+    // Add a zero before seconds if there's only one digit
+    if (seconds < 10) {
+        seconds = "0" + seconds;
+    }
+    // write the result into a string    
+    time = `${minutes}:${seconds}`;
+    // return the string
+    return time;
+} 
