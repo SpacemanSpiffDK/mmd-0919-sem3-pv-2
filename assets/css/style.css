@@ -52,6 +52,10 @@ h1 {
 	margin-top: var(--frp-density-xl);
 }
 
+button {
+	cursor: pointer;
+}
+
 /* generic stuff */
 
 .responsive-video {

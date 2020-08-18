@@ -21,7 +21,7 @@ const elmVideo = document.querySelector('#video1 > video');
 const elmStatus = document.querySelector('#status');
 elmVideo.addEventListener('play', (event) => {
     elmStatus.innerHTML = 'Play';
-    console.log(event); // see what's inside the event object
+    // console.log(event); // see what's inside the event object
 });
 
 // // This does the same thing as above, but isn't using the ES6 arrow-function, use whatever you're comfortable with
@@ -83,3 +83,29 @@ const displayTime = (timeInSeconds) => {
     // return the string
     return time;
 } 
+
+// 
+// 
+// Setting the current time of a video
+// 
+// 
+
+// PART 1: Jump to 20 sec button (Comedy gold, right there)
+
+// Find the button in the HTML DOM, put it in a constant
+const elmJumpTo20 = document.querySelector('#btnJumpTo20'); // find the jump to 20 seconds button
+const funcJumpTo20 = () => { // function that sets video time to 20 seconds
+    elmVideo.currentTime = 20; // set video time to 20 seconds
+}
+elmJumpTo20.addEventListener('click', funcJumpTo20); // bind the function to the button's click eventlistener
+
+// PART 2: function that skips forward or backwards depending on the parameter
+const elmsScanBtns = document.querySelectorAll('.btnScan'); // find all scan buttons 
+elmsScanBtns.forEach((btn) => { // loop through the scan buttons
+    const skipSeconds = parseInt(btn.dataset.skip); // get the amount of seconds we want the video to skip by (positive/negative)
+    btn.addEventListener('click', () => { // add a click eventlistener to the current button
+        let now = elmVideo.currentTime; // Get the current time from the video
+        let newTime = now + skipSeconds; // calculate the time we want to jump to
+        elmVideo.currentTime = newTime; // set the video to the new time
+    });
+});
