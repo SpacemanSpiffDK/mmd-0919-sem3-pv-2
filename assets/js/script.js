@@ -43,6 +43,7 @@ elmVideo.addEventListener('seeking', (event) => {
 // Try it yourself - use 15 minutes to test a couple of events
 // Example what's the difference between "seeked" and "seeking"
 
+// NEXT => BACK TO SLIDES!!!
 
 // Set current time: .currentTime = 5;
 // read current time: .currentTime
@@ -90,6 +91,7 @@ const displayTime = (timeInSeconds) => {
 // 
 // 
 
+// NEXT => BACK TO SLIDES!!!
 // PART 1: Jump to 20 sec button (Comedy gold, right there)
 
 // Find the button in the HTML DOM, put it in a constant
@@ -99,6 +101,7 @@ const funcJumpTo20 = () => { // function that sets video time to 20 seconds
 }
 elmJumpTo20.addEventListener('click', funcJumpTo20); // bind the function to the button's click eventlistener
 
+// NEXT => BACK TO SLIDES!!!
 // PART 2: function that skips forward or backwards depending on the parameter
 const elmsScanBtns = document.querySelectorAll('.btnScan'); // find all scan buttons 
 elmsScanBtns.forEach((btn) => { // loop through the scan buttons
